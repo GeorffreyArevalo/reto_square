@@ -1,0 +1,19 @@
+
+services:
+  database:
+    container_name: mysql-db
+    image: mysql:8.0.32
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: squares
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: square
+      MYSQL_ROOT_PASSWORD: passroot
+    volumes:
+      - mysql-reto:/var/lib/mysql
+
+volumes:
+  mysql-reto:
+    external: false
+

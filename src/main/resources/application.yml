@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: square
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/square?serverTimeZone=America/Bogota&allowPublicKeyRetrieval=true
+    username: squares
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
