@@ -21,15 +21,21 @@ public class RestaurantPersistenceAdapter implements RestaurantPersistencePort{
     private final RestaurantEntityMapper restaurantEntityMapper;
 
     @Override
-    public Optional<RestaurantModel> create(RestaurantModel restaurant) {
+    public RestaurantModel create(RestaurantModel restaurant) {
         RestaurantEntity entity = restaurantEntityMapper.modelToEntity(restaurant);
         RestaurantEntity savedEntity = restaurantRepository.save(entity);
-        return Optional.of( restaurantEntityMapper.entityToModel(savedEntity) );
+        return restaurantEntityMapper.entityToModel(savedEntity);
     }
 
     @Override
     public List<RestaurantModel> findAll() {
         return restaurantEntityMapper.listEntityToModel( restaurantRepository.findAll() );
+    }
+
+    @Override
+    public Optional<RestaurantModel> findById(Long id) {
+        Optional<RestaurantEntity> restaurantEntity =  restaurantRepository.findById(id);
+        return restaurantEntity.map( restaurantEntityMapper::entityToModel );
     }
     
 }

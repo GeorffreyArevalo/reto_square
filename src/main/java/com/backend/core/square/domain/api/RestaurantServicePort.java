@@ -8,6 +8,8 @@ public interface RestaurantServicePort {
     
     void create(RestaurantModel restaurant);
 
+    RestaurantModel findById(Long id);
+
     List<RestaurantModel> findAll();
 
 }

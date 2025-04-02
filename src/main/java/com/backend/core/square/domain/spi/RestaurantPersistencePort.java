@@ -7,7 +7,9 @@ import com.backend.core.square.domain.models.RestaurantModel;
 
 public interface RestaurantPersistencePort {
     
-    Optional<RestaurantModel> create( RestaurantModel restaurant );
+    RestaurantModel create( RestaurantModel restaurant );
+
+    Optional<RestaurantModel> findById(Long id);
 
     List<RestaurantModel> findAll();
 
