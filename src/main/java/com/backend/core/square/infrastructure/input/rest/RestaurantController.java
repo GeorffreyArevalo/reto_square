@@ -35,8 +35,6 @@ public class RestaurantController {
     public ResponseEntity<List<RestaurantResponse>> findAll() {
         return ResponseEntity.ok( restaurantHandler.findAll() );
     }
-    
-    
 
 
 }

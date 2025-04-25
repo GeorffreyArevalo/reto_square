@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.core.square.application.dtos.plate.CreatePlateRequest;
 import com.backend.core.square.application.dtos.plate.PlateResponse;
+import com.backend.core.square.application.dtos.plate.UpdatePlateRequest;
 import com.backend.core.square.application.mappers.PlateMapper;
 import com.backend.core.square.domain.api.CategoryServicePort;
 import com.backend.core.square.domain.api.PlateServicePort;
@@ -42,6 +43,14 @@ public class PlateHandlerImpl implements PlateHandler{
     @Override
     public PlateResponse findById(Long id) {
         return plateMapper.modelToResponse(plateServicePort.findById(id));
+    }
+
+    @Override
+    public PlateResponse update(Long id, UpdatePlateRequest updatePlateRequest) {
+        updatePlateRequest.validate();
+        PlateModel plateModel = plateServicePort.findById(id);
+        plateMapper.updatePlateRequestToModel(updatePlateRequest, plateModel);
+        return plateMapper.modelToResponse(plateServicePort.update(plateModel));
     }
     
 }

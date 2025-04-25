@@ -8,4 +8,6 @@ public interface PlateServicePort {
 
     void create(PlateModel plate);
 
+    PlateModel update(PlateModel plate);
+
 }

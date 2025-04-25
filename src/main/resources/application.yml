@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: square
@@ -17,3 +18,16 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+
+eureka:
+  instance:
+    instance-id: "${spring.application.name}:${random.value}"
+
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  servlet:
+    context-path: /square
+  port: 0

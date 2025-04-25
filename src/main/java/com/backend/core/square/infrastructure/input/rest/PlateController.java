@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.core.square.application.dtos.plate.CreatePlateRequest;
 import com.backend.core.square.application.dtos.plate.PlateResponse;
+import com.backend.core.square.application.dtos.plate.UpdatePlateRequest;
 import com.backend.core.square.application.handlers.plate.PlateHandler;
 
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +36,11 @@ public class PlateController {
     public ResponseEntity<Void> save(@RequestBody CreatePlateRequest createPlateRequest) {
         plateHandler.save(createPlateRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<PlateResponse> update(@PathVariable(name = "id") Long id, @RequestBody UpdatePlateRequest updatePlateRequest ) {
+        return ResponseEntity.ok(plateHandler.update(id, updatePlateRequest));
     }
         
 

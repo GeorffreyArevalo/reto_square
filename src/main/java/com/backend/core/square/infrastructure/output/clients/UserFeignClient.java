@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.backend.core.square.infrastructure.output.dtos.responses.UserResponse;
 
-@FeignClient( name = "users", url = "http://localhost:8090" )
+@FeignClient( name = "users" )
 public interface UserFeignClient {
     
     @GetMapping("/user/{id}")
